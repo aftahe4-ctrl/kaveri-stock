@@ -65,14 +65,14 @@ export default function ProductsPage() {
 
   function handleEdit(product) {
     setEditingId(product.id);
-    setName(product.name);
-    setCategory(product.category || "");
-    setPrice(product.price || "");
-    setStock(product.stock || "");
+    setName(product?.name || "");
+    setCategory(product?.category || "");
+    setPrice(product?.price || "");
+    setStock(product?.stock || "");
   }
 
+  // FIXED: Removed the window.confirm popup for instant deletion
   async function handleDelete(id) {
-    if (!window.confirm("Are you sure you want to delete this product?")) return;
     const { error } = await supabase.from('products').delete().eq('id', id);
     if (error) {
       setErrorMessage(error.message);
@@ -90,8 +90,8 @@ export default function ProductsPage() {
   }
 
   const filteredProducts = products.filter(product =>
-    product.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    product.category?.toLowerCase().includes(searchTerm.toLowerCase())
+    product?.name?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    product?.category?.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
   return (
@@ -179,12 +179,12 @@ export default function ProductsPage() {
           {filteredProducts.map((product) => (
             <div key={product.id} className="p-4 border rounded bg-gray-50 flex justify-between items-center">
               <div>
-                <p className="font-bold text-lg text-gray-800">{product.name}</p>
-                <p className="text-sm text-gray-600 mt-0.5">Category: {product.category || "Uncategorized"}</p>
-                <p className="text-xs text-gray-500 mt-1">Stock: <span className="font-semibold text-blue-600">{product.stock}</span></p>
+                <p className="font-bold text-lg text-gray-800">{product?.name}</p>
+                <p className="text-sm text-gray-600 mt-0.5">Category: {product?.category || "Uncategorized"}</p>
+                <p className="text-xs text-gray-500 mt-1">Stock: <span className="font-semibold text-blue-600">{product?.stock}</span></p>
               </div>
               <div className="flex items-center gap-4">
-                <p className="font-bold text-[#2ecc71] text-lg">${product.price}</p>
+                <p className="font-bold text-[#2ecc71] text-lg">${product?.price}</p>
                 <button 
                   onClick={() => handleEdit(product)}
                   className="bg-blue-500 text-white px-3 py-1.5 rounded text-sm font-semibold hover:bg-blue-600 transition-colors"
