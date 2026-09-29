@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import { Routes, Route, Link } from "react-router-dom";
 import { supabase } from "./supabase";
 import LoginPage from "./LoginPage";
 import DashboardPage from "./DashboardPage";
@@ -35,34 +35,34 @@ export default function App() {
     return <LoginPage />;
   }
 
-  // If logged in, show the full dashboard structure
+  // If logged in, show the full dashboard structure (Router wrapper removed)
   return (
-    <Router>
-      <div className="flex min-h-screen bg-[#f8f9fa]">
-        {/* Sidebar */}
-        <aside className="w-64 bg-[#1e293b] text-white flex flex-col">
-          <div className="p-6 text-2xl font-bold border-b border-gray-700">
-            Kaveri Stock
-          </div>
-          <nav className="flex-1 p-4 space-y-2">
-            <Link to="/" className="block p-3 rounded hover:bg-gray-700">Dashboard</Link>
-            <Link to="/products" className="block p-3 rounded hover:bg-gray-700">Products</Link>
-            <Link to="/categories" className="block p-3 rounded hover:bg-gray-700">Categories</Link>
-            <Link to="/orders" className="block p-3 rounded hover:bg-gray-700">Orders</Link>
-            <Link to="/suppliers" className="block p-3 rounded hover:bg-gray-700">Suppliers</Link>
-            <Link to="/users" className="block p-3 rounded hover:bg-gray-700">Users</Link>
-          </nav>
-          <div className="p-4 border-t border-gray-700">
-            <button 
-              onClick={handleLogout}
-              className="w-full text-left p-3 rounded hover:bg-red-600 transition-colors"
-            >
-              Logout
-            </button>
-          </div>
-        </aside>
+    <div className="flex min-h-screen bg-[#f8f9fa]">
+      {/* Sidebar */}
+      <aside className="w-64 bg-[#1e293b] text-white flex flex-col">
+        <div className="p-6 text-2xl font-bold border-b border-gray-700">
+          Kaveri Stock
+        </div>
+        <nav className="flex-1 p-4 space-y-2">
+          <Link to="/" className="block p-3 rounded hover:bg-gray-700">Dashboard</Link>
+          <Link to="/products" className="block p-3 rounded hover:bg-gray-700">Products</Link>
+          <Link to="/categories" className="block p-3 rounded hover:bg-gray-700">Categories</Link>
+          <Link to="/orders" className="block p-3 rounded hover:bg-gray-700">Orders</Link>
+          <Link to="/suppliers" className="block p-3 rounded hover:bg-gray-700">Suppliers</Link>
+          <Link to="/users" className="block p-3 rounded hover:bg-gray-700">Users</Link>
+        </nav>
+        <div className="p-4 border-t border-gray-700">
+          <button 
+            onClick={handleLogout}
+            className="w-full text-left p-3 rounded hover:bg-red-600 transition-colors"
+          >
+            Logout
+          </button>
+        </div>
+      </aside>
 
-        {/* Main Content Area */}
+      {/* Main Content Area */}
+      <main className="flex-1 p-8">
         <Routes>
           <Route path="/" element={<DashboardPage />} />
           <Route path="/products" element={<ProductsPage />} />
@@ -71,7 +71,7 @@ export default function App() {
           <Route path="/suppliers" element={<SuppliersPage />} />
           <Route path="/users" element={<UsersPage />} />
         </Routes>
-      </div>
-    </Router>
+      </main>
+    </div>
   );
 }
