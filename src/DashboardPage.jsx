@@ -63,7 +63,7 @@ export default function DashboardPage() {
         {/* Revenue Card */}
         <div className="bg-[#9b59b6] text-white rounded-md p-6 shadow-sm flex flex-col items-center justify-center">
           <h3 className="text-lg font-semibold mb-2">Revenue</h3>
-          <p className="text-4xl font-bold">${totalRevenue.toFixed(2)}</p>
+          <p className="text-4xl font-bold">৳ {totalRevenue.toFixed(2)}</p>
         </div>
       </div>
 
