@@ -93,7 +93,7 @@ export default function OrdersPage() {
         <form onSubmit={handleSubmit} className="flex gap-4 items-center">
           <input type="text" placeholder="Customer Name" required value={customerName} onChange={(e) => setCustomerName(e.target.value)} className="flex-1 border border-gray-300 rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#4b8df8]"/>
           <input type="text" placeholder="Phone Number" required value={customerPhone} onChange={(e) => setCustomerPhone(e.target.value)} className="w-44 border border-gray-300 rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#4b8df8]"/>
-          <input type="number" placeholder="Amount ($)" required min="0" step="0.01" value={totalAmount} onChange={(e) => setTotalAmount(e.target.value)} className="w-32 border border-gray-300 rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#4b8df8]"/>
+          <input type="number" placeholder="Amount (BDT)" required min="0" step="0.01" value={totalAmount} onChange={(e) => setTotalAmount(e.target.value)} className="w-32 border border-gray-300 rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#4b8df8]"/>
           <select value={status} onChange={(e) => setStatus(e.target.value)} className="w-36 border border-gray-300 rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#4b8df8]">
             <option value="Pending">Pending</option>
             <option value="Completed">Completed</option>
@@ -122,7 +122,7 @@ export default function OrdersPage() {
                 <p className="text-xs text-blue-600 font-semibold mt-1">Status: {order.status}</p>
               </div>
               <div className="flex items-center gap-4">
-                <p className="font-bold text-[#2ecc71] text-lg">${order.total_amount}</p>
+                <p className="font-bold text-[#2ecc71] text-lg">৳ {order.total_amount}</p>
                 <button onClick={() => handleEdit(order)} className="bg-blue-500 text-white px-3 py-1.5 rounded text-sm font-semibold hover:bg-blue-600 transition-colors">Edit</button>
                 <button onClick={() => handleDelete(order.id)} className="bg-red-500 text-white px-3 py-1.5 rounded text-sm font-semibold hover:bg-red-600 transition-colors">Delete</button>
               </div>
