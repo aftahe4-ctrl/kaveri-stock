@@ -71,7 +71,6 @@ export default function ProductsPage() {
     setStock(product?.stock || "");
   }
 
-  // FIXED: Removed the window.confirm popup for instant deletion
   async function handleDelete(id) {
     const { error } = await supabase.from('products').delete().eq('id', id);
     if (error) {
@@ -121,7 +120,7 @@ export default function ProductsPage() {
           />
           <input 
             type="number" 
-            placeholder="Price ($)" 
+            placeholder="Price (BDT)" 
             required 
             min="0" 
             step="0.01" 
@@ -184,7 +183,7 @@ export default function ProductsPage() {
                 <p className="text-xs text-gray-500 mt-1">Stock: <span className="font-semibold text-blue-600">{product?.stock}</span></p>
               </div>
               <div className="flex items-center gap-4">
-                <p className="font-bold text-[#2ecc71] text-lg">${product?.price}</p>
+                <p className="font-bold text-[#2ecc71] text-lg">৳ {product?.price}</p>
                 <button 
                   onClick={() => handleEdit(product)}
                   className="bg-blue-500 text-white px-3 py-1.5 rounded text-sm font-semibold hover:bg-blue-600 transition-colors"
